@@ -256,6 +256,16 @@ class Pendulum(Particle):
         
         self.xv_unwrap = copy(self.xv)
         self.xv[:,0] = x_new
+        
+    def scipy_trajectory_L(self):
+        Particle.scipy_trajectory(self)
+        
+        x = self.xv[:,0]
+        x_new = np.zeros(np.shape(x))
+        x_new[0] = x[0]
+
+        self.xv_unwrap = copy(self.xv)
+        self.xv[:,0] = x_new
     
     def F(self, x, v, t):
         g = 9.8 
